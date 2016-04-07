@@ -36,7 +36,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Draw Board"
+        android:text="@string/draw_board"
         android:onClick="drawBoard"/>
 
     <LinearLayout
@@ -49,7 +49,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pawn Promotion"/>
+            android:text="@string/pawn_promotion"/>
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,26 +60,26 @@
                 android:id="@+id/queenRadio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Queen"
+                android:text="@string/queen"
                 android:tag="qn"
                 />
             <RadioButton
                 android:id="@+id/bishopRadio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bishop"
+                android:text="@string/bishop"
                 android:tag="bi"/>
             <RadioButton
                 android:id="@+id/rookRadio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rook"
+                android:text="@string/rook"
                 android:tag="rk"/>
             <RadioButton
                 android:id="@+id/knightRadio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Knight"
+                android:text="@string/knight"
                 android:tag="kn"/>
         </RadioGroup>
         <Button
@@ -87,7 +87,7 @@
             android:onClick="finishPawnPromotion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Promote Pawn"
+            android:text="@string/promote_pawn_bttn"
             android:background="@drawable/custom_button"
             android:textColor="@color/white"/>
     </LinearLayout>

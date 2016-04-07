@@ -1,7 +1,7 @@
 // Chuanbo Pan <chuanbo@stanford.edu>
 // BasicChess - Allows two people to play a game of chess!
 // Doesn't have any AI implementation, check/checkmate detection
-// an En Passant (hence the "Simple").
+// and En Passant (hence the "Simple").
 // Has all the other basic features of the game of chess.
 
 package com.panchuanbo.basicchess;
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
         int gridLayoutWidth = gridLayout.getWidth();
 
         if (!drewInitialBoard) {
-            ((Button)view).setText("Reset Board");
+            ((Button)view).setText(R.string.reset_board);
             TextView welcomeText = (TextView)findViewById(R.id.welcomeView);
             TextView subWelcomeText = (TextView)findViewById(R.id.subTextView);
             if (welcomeText != null) ((LinearLayout)welcomeText.getParent()).removeView(welcomeText);

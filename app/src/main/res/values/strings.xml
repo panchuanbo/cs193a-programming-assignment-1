@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BasicChess</string>
+    <string name="reset_board">Reset Board</string>
+    <string name="draw_board">Draw Board</string>
+    <string name="pawn_promotion">Pawn Promotion</string>
+    <string name="queen">Queen</string>
+    <string name="bishop">Bishop</string>
+    <string name="rook">Rook</string>
+    <string name="knight">Knight</string>
+    <string name="promote_pawn_bttn">Promote Pawn</string>
 </resources>
