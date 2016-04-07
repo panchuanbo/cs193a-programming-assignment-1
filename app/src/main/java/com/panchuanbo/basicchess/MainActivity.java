@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Boolean validMoveBishop() {
+        if (start.equals(end)) return false;
         if (Math.abs(end.x - start.x) != Math.abs(end.y - start.y)) return false;
         int offsetX = (end.x - start.x < 0) ? -1 : 1;
         int offsetY = (end.y - start.y < 0) ? -1 : 1;
