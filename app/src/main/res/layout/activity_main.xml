@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.panchuanbo.basicchess.MainActivity">
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Basic Chess!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:id="@+id/welcomeView" />
+    <TextView
+        android:id="@+id/subTextView"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Press Draw Board to Begin"/>
+
+    <GridLayout
+        android:id="@+id/board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="8"
+        android:rowCount="8">
+    </GridLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Draw Board"
+        android:onClick="drawBoard"/>
+
+    <LinearLayout
+        android:id="@+id/pawnPromotionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pawn Promotion"/>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:id="@+id/promotionGroup">
+            <RadioButton
+                android:id="@+id/queenRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Queen"
+                android:tag="qn"
+                />
+            <RadioButton
+                android:id="@+id/bishopRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bishop"
+                android:tag="bi"/>
+            <RadioButton
+                android:id="@+id/rookRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rook"
+                android:tag="rk"/>
+            <RadioButton
+                android:id="@+id/knightRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Knight"
+                android:tag="kn"/>
+        </RadioGroup>
+        <Button
+            android:id="@+id/promotePawnButton"
+            android:onClick="finishPawnPromotion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Promote Pawn"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</LinearLayout>
