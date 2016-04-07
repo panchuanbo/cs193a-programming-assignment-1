@@ -6,13 +6,11 @@
 
 package com.panchuanbo.basicchess;
 
-import android.app.ActionBar;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -98,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void beginPawnPromotion() {
         Button promotionButton = ((Button) findViewById(R.id.promotePawnButton));
-        promotionButton.setTag(new Point(end.x, end.y));
+        if (promotionButton != null) promotionButton.setTag(new Point(end.x, end.y));
         promotionType = currentTurn;
         pawnPromotionView.setVisibility(View.VISIBLE);
         pawnPromotion = true;
@@ -129,14 +127,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Boolean validMoveKing() {
-        if (Math.abs(end.x - start.x) > 1 || Math.abs(end.y - start.y) > 1) return false;
-        return true;
+        return !(Math.abs(end.x - start.x) > 1 || Math.abs(end.y - start.y) > 1);
     }
 
     private Boolean validMoveKnight() {
-        if (Math.abs(end.x - start.x) == 2 && Math.abs(end.y - start.y) == 1) return true;
-        if (Math.abs(end.x - start.x) == 1 && Math.abs(end.y - start.y) == 2) return true;
-        return false;
+        return (Math.abs(end.x - start.x) == 2 && Math.abs(end.y - start.y) == 1) ||
+                (Math.abs(end.x - start.x) == 1 && Math.abs(end.y - start.y) == 2);
     }
 
     private Boolean validMoveRook() {
@@ -215,11 +211,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                         imageButtonLayout[start.x][start.y].setImageResource(android.R.color.transparent);
                         imageButtonLayout[start.x][start.y].setBackgroundColor((start.x + start.y) % 2 == 1 ? GRAY_COLOR : WHITE_COLOR);
-                        imageButtonLayout[end.x][end.y].setImageResource((Integer) pieceImage.get(currentLayout[start.x][start.y]));
+                        imageButtonLayout[end.x][end.y].setImageResource(pieceImage.get(currentLayout[start.x][start.y]));
                         currentLayout[end.x][end.y] = currentLayout[start.x][start.y];
                         currentLayout[start.x][start.y] = "";
                         start = end = null;
-                        currentTurn = (currentTurn == "W") ? "B" : "W";
+                        currentTurn = (currentTurn.equals("W")) ? "B" : "W";
                     }
                 }
             }
@@ -228,7 +224,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void drawBoard(View view) {
         int gridLayoutWidth = gridLayout.getWidth();
-        int gridLayoutHeight = gridLayout.getHeight();
 
         if (!drewInitialBoard) {
             ((Button)view).setText("Reset Board");
@@ -256,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
                     gridLayout.addView(square);
                 }
                 String key = currentLayout[i][j];
-                if (!key.isEmpty()) square.setImageResource((Integer)pieceImage.get(currentLayout[i][j]));
+                if (!key.isEmpty()) square.setImageResource(pieceImage.get(currentLayout[i][j]));
                 else square.setImageResource(android.R.color.transparent);
                 if ((i + j) % 2 == 1) square.setBackgroundColor(GRAY_COLOR);
                 else square.setBackgroundColor(WHITE_COLOR);
@@ -271,10 +266,10 @@ public class MainActivity extends AppCompatActivity {
             int radioButtonID = group.getCheckedRadioButtonId();
             RadioButton radioButton = (RadioButton)group.findViewById(radioButtonID);
             String tag = (String)radioButton.getTag();
-            Point loc = (Point)((Button)view).getTag();
+            Point loc = (Point)(view).getTag();
             currentLayout[loc.x][loc.y] = promotionType + tag;
             Log.d("Simplicity: ", currentLayout[loc.x][loc.y]);
-            imageButtonLayout[loc.x][loc.y].setImageResource((Integer) pieceImage.get(currentLayout[loc.x][loc.y]));
+            imageButtonLayout[loc.x][loc.y].setImageResource(pieceImage.get(currentLayout[loc.x][loc.y]));
             pawnPromotionView.setVisibility(View.INVISIBLE);
             pawnPromotion = false;
         }
