@@ -102,14 +102,19 @@ public class MainActivity extends AppCompatActivity {
         pawnPromotion = true;
     }
 
-    private Boolean validMovePawnUp() {
-        if (end.x - start.x > 0 || end.x - start.x < -2) return false;
-        if (end.x - start.x == -2 && start.x != UP_PAWN_HOME) return false;
+    private Boolean validMovePawn() {
         if (Math.abs(end.y - start.y) > 1 ||
                 (Math.abs(end.y - start.y) == 1 && (end.x - start.x == 0 || Math.abs(end.x - start.x) > 1))) return false;
         if (end.y - start.y == 0 && !currentLayout[end.x][end.y].isEmpty()) return false;
         if (Math.abs(end.y - start.y) == 1 && currentLayout[end.x][end.y].isEmpty()) return false;
-        if (Math.abs(end.x - start.x) == 2 && !currentLayout[end.x + 1][end.y].isEmpty()) return false;
+        if (Math.abs(end.x - start.x) == 2 && !currentLayout[end.x - 1][end.y].isEmpty()) return false;
+        return true;
+    }
+
+    private Boolean validMovePawnUp() {
+        if (end.x - start.x > 0 || end.x - start.x < -2) return false;
+        if (end.x - start.x == -2 && start.x != UP_PAWN_HOME) return false;
+        if (!validMovePawn()) return false;
         if (end.x == 0) beginPawnPromotion();
         return true;
     }
@@ -117,11 +122,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean validMovePawnDown() {
         if (end.x - start.x < 0 || end.x - start.x > 2) return false;
         if (end.x - start.x == 2 && start.x != DOWN_PAWN_HOME) return false;
-        if (Math.abs(end.y - start.y) > 1 ||
-                (Math.abs(end.y - start.y) == 1 && (end.x - start.x == 0 || Math.abs(end.x - start.x) > 1))) return false;
-        if (end.y - start.y == 0 && !currentLayout[end.x][end.y].isEmpty()) return false;
-        if (Math.abs(end.y - start.y) == 1 && currentLayout[end.x][end.y].isEmpty()) return false;
-        if (Math.abs(end.x - start.x) == 2 && !currentLayout[end.x - 1][end.y].isEmpty()) return false;
+        if (!validMovePawn()) return false;
         if (end.x == 7) beginPawnPromotion();
         return true;
     }
